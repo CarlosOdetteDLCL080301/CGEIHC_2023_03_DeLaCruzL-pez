@@ -1,0 +1,33 @@
+﻿main_prac01.obj : error LNK2019: símbolo externo __imp_glewInit sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo glfwInit sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo glfwTerminate sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo glfwGetPrimaryMonitor sin resolver al que se hace referencia en la función "void __cdecl getResolution(void)" (?getResolution@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo glfwGetVideoMode sin resolver al que se hace referencia en la función "void __cdecl getResolution(void)" (?getResolution@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo glfwCreateWindow sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo glfwWindowShouldClose sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo glfwSetWindowShouldClose sin resolver al que se hace referencia en la función "void __cdecl my_input(struct GLFWwindow *)" (?my_input@@YAXPEAUGLFWwindow@@@Z)
+main_prac01.obj : error LNK2019: símbolo externo glfwSetWindowPos sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo glfwSetFramebufferSizeCallback sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo glfwPollEvents sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo glfwGetKey sin resolver al que se hace referencia en la función "void __cdecl my_input(struct GLFWwindow *)" (?my_input@@YAXPEAUGLFWwindow@@@Z)
+main_prac01.obj : error LNK2019: símbolo externo glfwMakeContextCurrent sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo glfwSwapBuffers sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewBindBuffer sin resolver al que se hace referencia en la función "void __cdecl myData(void)" (?myData@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewBufferData sin resolver al que se hace referencia en la función "void __cdecl myData(void)" (?myData@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewGenBuffers sin resolver al que se hace referencia en la función "void __cdecl myData(void)" (?myData@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewAttachShader sin resolver al que se hace referencia en la función "void __cdecl setupShaders(void)" (?setupShaders@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewCompileShader sin resolver al que se hace referencia en la función "void __cdecl setupShaders(void)" (?setupShaders@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewCreateProgram sin resolver al que se hace referencia en la función "void __cdecl setupShaders(void)" (?setupShaders@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewCreateShader sin resolver al que se hace referencia en la función "void __cdecl setupShaders(void)" (?setupShaders@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewDeleteShader sin resolver al que se hace referencia en la función "void __cdecl setupShaders(void)" (?setupShaders@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewEnableVertexAttribArray sin resolver al que se hace referencia en la función "void __cdecl myData(void)" (?myData@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewLinkProgram sin resolver al que se hace referencia en la función "void __cdecl setupShaders(void)" (?setupShaders@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewShaderSource sin resolver al que se hace referencia en la función "void __cdecl setupShaders(void)" (?setupShaders@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewUseProgram sin resolver al que se hace referencia en la función main
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewVertexAttribPointer sin resolver al que se hace referencia en la función "void __cdecl myData(void)" (?myData@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewBindVertexArray sin resolver al que se hace referencia en la función "void __cdecl myData(void)" (?myData@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp___glewGenVertexArrays sin resolver al que se hace referencia en la función "void __cdecl myData(void)" (?myData@@YAXXZ)
+main_prac01.obj : error LNK2019: símbolo externo __imp_glewExperimental sin resolver al que se hace referencia en la función main
+lib\glew32.lib : warning LNK4272: el tipo de máquina de biblioteca 'x86' está en conflicto con el tipo de máquina de destino 'x64'
+lib\glfw3.lib : warning LNK4272: el tipo de máquina de biblioteca 'x86' está en conflicto con el tipo de máquina de destino 'x64'
+C:\Users\CGIH03\source\repos\CGEIHC_2023_03_DeLaCruzLópez\x64\Debug\CGEIHC_2023_03_DeLaCruzLópez.exe : fatal error LNK1120: 30 externos sin resolver
