@@ -81,36 +81,48 @@ void myData()/*Se mostrara la informacion de los vertices que queremos que se mu
 {
 	float vertices[] = 
 	{
-		// positions         //Color
-		0.0f,	0.0f,	0.0f,	1.0f,	1.0f,	1.0f,			//0		Esto controla la posicion de nuestro "punto" que se mostrará en la pantalla,en este caso se muestra en el centro, el formato del lienzo es (x,y,z, profundidad)
-		0.7f,	0.5f,	0.0f,	1.0f,	0.65f,	0.3f,			//1
-		-0.8f,	0.7f,	0.0f,	1.0f,	0.0f,	1.0f,			//2
-		-0.8f,	-0.67f,	0.0f,	1.0f,	1.0f,	0.0f,			//3
-		-0.0f,	-0.8f,	0.0f,	1.0f,	0.0f,	0.0f,			//4
-		0.4f,	-0.8f,	0.0f,	1.0f,	1.0f,	1.0f,			//5
+		// positions			//Color
+		//Esto controla la posicion de nuestro "punto" que se mostrará en la pantalla,en este caso se muestra en el centro, el formato del lienzo es (x,y,z, profundidad)
+		-0.6f,	-0.6f,	0.0f,	0.0f,	0.0f,	0.0f,			//0
+		-0.6f,	0.6f,	0.0f,	0.0f,	0.0f,	0.0f,			//1
+		0.6f,	0.6f,	0.0f,	0.0f,	0.0f,	0.0f,			//2
+		0.6f,	0.5f,	0.0f,	0.0f,	0.0f,	0.0f,			//3
+		0.0f,	0.5f,	0.0f,	0.0f,	0.0f,	0.0f,			//4
+		0.0f,	0.0f,	0.0f,	0.0f,	0.0f,	0.0f,			//5
+		0.2f,	0.0f,	0.0f,	0.0f,	0.0f,	0.0f,			//6
+		0.2f,	-0.2f,	0.0f,	0.0f,	0.0f,	0.0f,			//7
+		0.0f,	-0.2f,	0.0f,	0.0f,	0.0f,	0.0f,			//8
+		0.0f,	-0.6f,	0.0f,	0.0f,	0.0f,	0.0f,			//9
 		
 	};
 	/*La regla de union si se cambia el orden puede que se obtenga un resultado distinto*/
 	unsigned int indices[] =
 	{
-		0, 1, 4, 2, 3
+		1,2,3,
+		1,3,4,
+		1,4,5,
+		1,5,8,
+		1,8,0,
+		5,6,8,
+		8,6,7,
+		0,9,8
 	};
+	/*Las siguientes lineas las pasa a la memoria de video para sacar un mejor aprovechamiento*/
+	glGenVertexArrays(2, VAO);	/*Crea dos elementos en el espacio  para almacenar arreglos en la memoria de video*/
+	glGenBuffers(2, VBO);/*Vertice de objetos Buffers*/
+	glGenBuffers(2, EBO);/**/
 
-	glGenVertexArrays(2, VAO);
-	glGenBuffers(2, VBO);
-	glGenBuffers(2, EBO);
-
-
+	/*indices en OpenGL se les considera elementos*/
 
 	glBindVertexArray(VAO[0]);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);/*con sizeof, descubrira cuantos elementos se le pasará , se le pasara los datos con la parte de "vertices"; GL_STATIC_DRAW significa que los datos no se estarán cambiando, afuera se modificará*/
 	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);/*glVertexAttribPointer(cero es la posicion, valor en x, serán de valor flotante, no estaran normalizados,,de mi arreglo donde comienza el atributo de posicion)*/
 	glEnableVertexAttribArray(0);
 	// color attribute
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));/*En esta se definirá los colores de nuestro arreglo, aqui es gracias a la entrada 1*/
-	glEnableVertexAttribArray(1);/**/
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));/*En esta se definirá los colores de nuestro arreglo, aqui es gracias a la entrada 1----> glVertexAttribPointer(considerara el color de nuestro elemento,,comenzara a preguntar cada cuanto tomar los puntos,posteriormente de la 4 a 6 considerará los atributos del color)*/
+	glEnableVertexAttribArray(1);/*Esto es el atrbiuto de color*/
 
 	//Para trabajar con indices (Element Buffer Object)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[0]);
@@ -209,7 +221,7 @@ int main()
 
         // render
         // Background color
-        glClearColor(1.0f, 0.0f, 0.0f, 1.0f);/*glClearColor(r,g,b,canalApha)*/
+        glClearColor(3.0f, 3.0f, 3.0f, 1.0f);/*glClearColor(r,g,b,canalApha)*/
         glClear(GL_COLOR_BUFFER_BIT);
 
 		//Display Section
@@ -220,8 +232,10 @@ int main()
 
 		glPointSize(10.0);/*Esto indica que el tamaño de los puntos sea el colocado, es de la dimension del pixel*/
 		glLineWidth(1.0f);
-		//glDrawElements(GL_POINTS, 5, GL_UNSIGNED_INT, 0);
-		glDrawArrays(GL_TRIANGLE_FAN, 0, 6);/*Es un comando para armar la geometria, recibe tres argumentos (tipo de dibujo que quiero mostrar se puede usar puntos o lineas con GL_POINTS, GL_LINES, de los pasos que se le paso al sistema es el valor inicial desde donde se comienza, a partir de ahí solo dibujara un objeto hasta el elemento seleccionado)*//*GL_LINE_STRIP lo que hace es conectar todos los puntos que se colocaron en la lista de vertices*//*GL_LINE_LOOP lo que hace es unir todos los puntos hasta cerrarlo completamente con todos los puntos y no recurrir a GL_LINE_STRIP para colocar otra linea que funja como el cierre entre los puntos*//*GL_TRIANGLES nos crea un poligono como un traingulo en este caso*//*GL_TRIANGLE_STRIP lo que hace es conectar cada de los puntos de nuestra lista de vertices generando triangulos, ejemplo, nuestra lista de indice N hara triangulos con i, i+1, i+2, siempre y cuando con i se pueda realizar un triangulo*//*GL_TRIANGLE_FAN tomara los puntos como pivote, y realizará un triangulo uniendo a los demsa puntos*/
+		glDrawElements(GL_TRIANGLES, 24 , GL_UNSIGNED_INT, 0);/*glDrawElements(... , cantidad de elementos, ... , desde donde inicia )*/
+		//glDrawArrays(GL_TRIANGLES, 1, 3);/*Es un comando para armar la geometria, recibe tres argumentos (tipo de dibujo que quiero mostrar se puede usar puntos o lineas con GL_POINTS, GL_LINES, de los pasos que se le paso al sistema es el valor inicial desde donde se comienza, a partir de ahí solo dibujara un objeto hasta el elemento seleccionado)*//*GL_LINE_STRIP lo que hace es conectar todos los puntos que se colocaron en la lista de vertices*//*GL_LINE_LOOP lo que hace es unir todos los puntos hasta cerrarlo completamente con todos los puntos y no recurrir a GL_LINE_STRIP para colocar otra linea que funja como el cierre entre los puntos*//*GL_TRIANGLES nos crea un poligono como un traingulo en este caso*//*GL_TRIANGLE_STRIP lo que hace es conectar cada de los puntos de nuestra lista de vertices generando triangulos, ejemplo, nuestra lista de indice N hara triangulos con i, i+1, i+2, siempre y cuando con i se pueda realizar un triangulo*//*GL_TRIANGLE_FAN tomara los puntos como pivote, y realizará un triangulo uniendo a los demsa puntos*/
+		//glDrawArrays(GL_TRIANGLE_FAN, 0,8);
+		//glDrawArrays(GL_TRIANGLE_FAN, 0, 8);
 		//glDrawArrays(GL_POINTS, 4, 1);
 
 		glBindVertexArray(0);
